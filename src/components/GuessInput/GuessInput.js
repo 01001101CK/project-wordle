@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 
-function Input() {
- const [guess, setGuess] = useState('');
- 
+function Input({ handleSubmitGuess }) {
+ const [tentativeGuess, setTentativeGuess] = useState('');
+
  function handleSubmit (event) {
  event.preventDefault();
- console.info({guess})
- setGuess('')
-
+   console.info({ tentativeGuess })
+   handleSubmitGuess(tentativeGuess)
+   setTentativeGuess('')
  }
   return (
     <>
@@ -20,7 +20,7 @@ function Input() {
         required
         type="text"
         id="guess-input"
-        value={guess}
+          value={tentativeGuess}
         minLength={5}
         maxLength={5}
           //The pattern attribute uses Regular Expression syntax. 
@@ -33,7 +33,7 @@ function Input() {
         title="5 letter word"
         onChange={event => {
           const upperCase = event.target.value.toUpperCase();
-          setGuess(upperCase);
+          setTentativeGuess(upperCase);
         }}
       />
     </form>
